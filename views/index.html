@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%=title%></title>
+</head>
+<body>
+    <%=title%>
+    <p><label>UserName</label><input type="text" id="txt_UserName" value="admin" /></p>
+    <p><label>PassWord</label><input type="text" id="txt_PassWord" value="123456" /></p>
+    <p>
+        <input type="button" id="btn_login" value="login" />
+        <input type="button" id="btn_test" value="test login success" />
+        <input type="button" id="btn_logout" value="logout" />
+    </p>
+    
+    <script type="text/javascript" src="../public/javascripts/jquery.min.js"></script>
+    <script type="text/javascript">
+        
+        $('#btn_login').click(function(){
+            
+            $.ajax({
+                url:'/login',
+                data:{"username":$('#txt_UserName').val(),"password":$('#txt_PassWord').val()},
+                type:'post',
+                success:function(result){
+                    console.log(result);
+                }
+            });
+            
+        });
+        
+        $('#btn_test').click(function(){
+            
+            $.ajax({
+                url:'/getdata',
+                data:{},
+                type:'get',
+                success:function(result){
+                    console.log(result);
+                }
+            });
+            
+        });
+        
+        $('#btn_logout').click(function(){
+            
+            $.ajax({
+                url:'/logout',
+                data:{},
+                type:'post',
+                success:function(result){
+                    console.log(result);
+                }
+            });
+            
+        });
+        
+    </script>
+</body>
+</html>
